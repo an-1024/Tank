@@ -10,6 +10,12 @@ public class TankFrame_v2 extends Frame {
 
     int x=200, y=200;
 
+    //给坦克一个初始方向
+    Direction dir = Direction.DOWN;
+
+    //坦克的速度固定
+    final int SPEED = 10;
+
     public TankFrame_v2() throws HeadlessException {
         //设置窗体大小
         setSize(800,600);
@@ -38,14 +44,32 @@ public class TankFrame_v2 extends Frame {
     public void paint(Graphics g) {
         System.out.println("paint");
         g.fillRect(x,y,50,50);
+
+        switch(dir){
+            case LEFT:
+                x-=SPEED;
+                break;
+            case UP:
+                y-=SPEED;
+                break;
+            case RIGHT:
+                x+=SPEED;
+                break;
+            case DOWN:
+                y+=SPEED;
+                break;
+            default:
+                break;
+        }
+
 //        x+=20;
 //        y+=20;
 
     }
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         TankFrame_v2 frame = new TankFrame_v2();
-    }
+    }*/
 
     class MyKeyListener extends KeyAdapter{
 
@@ -63,16 +87,20 @@ public class TankFrame_v2 extends Frame {
                     bL=true;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    bU=true;
+                    bR=true;
                     break;
                 case KeyEvent.VK_UP:
-                    bR=true;
+                    bU=true;
                     break;
                 case KeyEvent.VK_DOWN:
                     bD=true;
                     break;
+                default:
+                    break;
 
             }
+
+            setMainTankDir();
 //            x+=200;
 //            repaint();
         }
@@ -86,15 +114,32 @@ public class TankFrame_v2 extends Frame {
                     bL=false;
                     break;
                 case KeyEvent.VK_RIGHT:
-                    bU=false;
+                    bR=false;
                     break;
                 case KeyEvent.VK_UP:
-                    bR=false;
+                    bU=false;
                     break;
                 case KeyEvent.VK_DOWN:
                     bD=false;
                     break;
+                default:
+                    break;
+            }
+            setMainTankDir();
+        }
 
+        private void setMainTankDir() {
+            if(bL){
+                dir = Direction.LEFT;
+            }
+            if(bU){
+                dir = Direction.UP;
+            }
+            if(bR){
+                dir = Direction.RIGHT;
+            }
+            if(bD){
+                dir = Direction.DOWN;
             }
         }
     }
