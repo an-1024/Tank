@@ -1,5 +1,7 @@
 package newFrame;
 
+import tankAttributes.TankAttributes;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -7,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame_v2 extends Frame {
+/*
 
     int x=200, y=200;
 
@@ -15,6 +18,9 @@ public class TankFrame_v2 extends Frame {
 
     //坦克的速度固定
     final int SPEED = 10;
+
+*/
+    TankAttributes myTank = new TankAttributes(200,200, Direction.DOWN);
 
     public TankFrame_v2() throws HeadlessException {
         //设置窗体大小
@@ -40,36 +46,14 @@ public class TankFrame_v2 extends Frame {
 
     }
 
+
+    //将画笔传给tank自己，让它自己主导
+
+
     @Override
     public void paint(Graphics g) {
-        System.out.println("paint");
-        g.fillRect(x,y,50,50);
-
-        switch(dir){
-            case LEFT:
-                x-=SPEED;
-                break;
-            case UP:
-                y-=SPEED;
-                break;
-            case RIGHT:
-                x+=SPEED;
-                break;
-            case DOWN:
-                y+=SPEED;
-                break;
-            default:
-                break;
-        }
-
-//        x+=20;
-//        y+=20;
-
+        myTank.paint(g);
     }
-
-/*    public static void main(String[] args) {
-        TankFrame_v2 frame = new TankFrame_v2();
-    }*/
 
     class MyKeyListener extends KeyAdapter{
 
@@ -130,16 +114,16 @@ public class TankFrame_v2 extends Frame {
 
         private void setMainTankDir() {
             if(bL){
-                dir = Direction.LEFT;
+                myTank.setDir(Direction.LEFT);
             }
             if(bU){
-                dir = Direction.UP;
+                myTank.setDir(Direction.UP);
             }
             if(bR){
-                dir = Direction.RIGHT;
+                myTank.setDir(Direction.RIGHT);
             }
             if(bD){
-                dir = Direction.DOWN;
+                myTank.setDir(Direction.DOWN);
             }
         }
     }
