@@ -60,7 +60,10 @@ public class TankAttributes {
     //将画笔交给tank自己，因为只有tank最知道自己的属性，而不是由我们
     //将属性取出来复制
     public void paint(Graphics g) {
+        Color cr = g.getColor();
+        g.setColor(Color.YELLOW);
         g.fillRect(x,y,50,50);
+        g.setColor(cr);
         move();
     }
 
