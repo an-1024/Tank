@@ -7,7 +7,7 @@ public class Main {
         TankFrame_v2 t2 = new TankFrame_v2();
 
         while(true){
-            Thread.sleep(500);
+            Thread.sleep(100);
             t2.repaint();
         }
     }
