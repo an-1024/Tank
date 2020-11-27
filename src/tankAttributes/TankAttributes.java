@@ -9,7 +9,7 @@ public class TankAttributes {
     //初始方向
     private Direction dir = Direction.DOWN;
     //移动速度
-    private static final int SPEED=10;
+    private static final int SPEED=5;
 
     //初始状态
     private boolean moving = false;
