@@ -10,8 +10,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame_v2 extends Frame {
-    TankAttributes myTank = new TankAttributes(200,200, Direction.DOWN);
-    BulletAttributes bullet = new BulletAttributes(300,300,Direction.DOWN);
+    //将自身传给tankAttributes,此时tank就拥有了TankFrame_v2
+    //的引用
+    TankAttributes myTank = new TankAttributes(200,200, Direction.DOWN, this);
+    public BulletAttributes bullet = new BulletAttributes(300,300,Direction.DOWN);
 
     static final int GAME_WIDTH = 800, GAME_HEIGHT = 600;
 
@@ -24,7 +26,7 @@ public class TankFrame_v2 extends Frame {
         setTitle("Tank.exe");
         setVisible(true);
 
-        //设置关闭关比窗口功能
+        //设置关闭关闭窗口功能
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -85,6 +87,8 @@ public class TankFrame_v2 extends Frame {
                 case KeyEvent.VK_DOWN:
                     bD=true;
                     break;
+                case KeyEvent.VK_CONTROL:
+                    myTank.fire();
                 default:
                     break;
 
