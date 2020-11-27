@@ -111,17 +111,24 @@ public class TankFrame_v2 extends Frame {
         }
 
         private void setMainTankDir() {
-            if(bL){
-                myTank.setDir(Direction.LEFT);
-            }
-            if(bU){
-                myTank.setDir(Direction.UP);
-            }
-            if(bR){
-                myTank.setDir(Direction.RIGHT);
-            }
-            if(bD){
-                myTank.setDir(Direction.DOWN);
+            //在没有按键的时候，保持静止状态
+            if(!bL && !bU && !bR && !bD){
+                myTank.setMoving(false);
+            }else {
+                //设置tank的时候，开始移动
+                myTank.setMoving(true);
+                if (bL) {
+                    myTank.setDir(Direction.LEFT);
+                }
+                if (bU) {
+                    myTank.setDir(Direction.UP);
+                }
+                if (bR) {
+                    myTank.setDir(Direction.RIGHT);
+                }
+                if (bD) {
+                    myTank.setDir(Direction.DOWN);
+                }
             }
         }
     }
