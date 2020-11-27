@@ -85,8 +85,6 @@ public class TankFrame_v2 extends Frame {
             }
 
             setMainTankDir();
-//            x+=200;
-//            repaint();
         }
 
         @Override
