@@ -1,6 +1,8 @@
 package tankAttributes;
 
+import bulletAttributes.BulletAttributes;
 import newFrame.Direction;
+import newFrame.TankFrame_v2;
 
 import java.awt.*;
 
@@ -14,11 +16,14 @@ public class TankAttributes {
     //初始状态
     private boolean moving = false;
 
+    //如何让tank打出子弹
+    private TankFrame_v2 tf = null;
 
-    public TankAttributes(int x, int y, Direction dir) {
+    public TankAttributes(int x, int y, Direction dir, TankFrame_v2 tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf = tf;
     }
 
     public int getX() {
@@ -87,5 +92,10 @@ public class TankAttributes {
             default:
                 break;
         }
+    }
+
+    //再将子弹在tankFrame_v2中new出来，并显示
+    public void fire() {
+        tf.bullet = new BulletAttributes(this.x, this.y, this.dir);
     }
 }
