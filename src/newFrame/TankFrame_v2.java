@@ -1,5 +1,6 @@
 package newFrame;
 
+import bulletAttributes.BulletAttributes;
 import tankAttributes.TankAttributes;
 
 import java.awt.*;
@@ -9,18 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame_v2 extends Frame {
-/*
-
-    int x=200, y=200;
-
-    //给坦克一个初始方向
-    Direction dir = Direction.DOWN;
-
-    //坦克的速度固定
-    final int SPEED = 10;
-
-*/
     TankAttributes myTank = new TankAttributes(200,200, Direction.DOWN);
+    BulletAttributes bullet = new BulletAttributes(300,300,Direction.DOWN);
 
     public TankFrame_v2() throws HeadlessException {
         //设置窗体大小
@@ -31,7 +22,6 @@ public class TankFrame_v2 extends Frame {
         setTitle("Tank.exe");
         setVisible(true);
 
-
         //设置关闭关比窗口功能
         addWindowListener(new WindowAdapter() {
             @Override
@@ -40,19 +30,16 @@ public class TankFrame_v2 extends Frame {
             }
         });
 
-
         //按键设置
         this.addKeyListener(new MyKeyListener());
 
     }
 
-
     //将画笔传给tank自己，让它自己主导
-
-
     @Override
     public void paint(Graphics g) {
         myTank.paint(g);
+        bullet.paint(g);
     }
 
     class MyKeyListener extends KeyAdapter{
@@ -64,7 +51,6 @@ public class TankFrame_v2 extends Frame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("key pressed");
             int key = e.getKeyCode();
             switch (key){
                 case KeyEvent.VK_LEFT:
@@ -89,7 +75,6 @@ public class TankFrame_v2 extends Frame {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            System.out.println("key released");
             int key = e.getKeyCode();
             switch (key){
                 case KeyEvent.VK_LEFT:
